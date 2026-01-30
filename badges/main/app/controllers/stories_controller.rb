@@ -33,8 +33,13 @@ class StoriesController < ApplicationController
   end
 
   def new
-    @story = Story.new.decorate
-    @story = @story.decorate
+    if params[:story_idea_id].present?
+      @story_idea = StoryIdea.find(params[:story_idea_id])
+      @story = Story.new(set_story_attributes_from(@story_idea))
+    else
+      @story = Story.new
+    end
+    @story.decorate
     set_form_variables
   end
 
@@ -52,7 +57,9 @@ class StoriesController < ApplicationController
     @story = Story.new(story_params)
 
     if @story.save
-      if params.dig(:library_asset, :new_assets).present?
+      if params[:promote_idea_assets] == "true"
+        @story.attach_assets_from_idea!
+      elsif params.dig(:library_asset, :new_assets).present?
         update_asset_owner(@story)
       end
 
@@ -81,9 +88,6 @@ class StoriesController < ApplicationController
 
   # Optional hooks for setting variables for forms or index
   def set_form_variables
-    @story.build_primary_asset if @story.primary_asset.blank?
-    @story.gallery_assets.build
-
     @story_idea = StoryIdea.find(params[:story_idea_id]) if params[:story_idea_id].present?
     @user = User.find(params[:user_id]) if params[:user_id].present?
     @projects = (@user || current_user).projects.order(:name)
@@ -108,10 +112,18 @@ class StoriesController < ApplicationController
     params.require(:story).permit(
       :title, :rhino_body, :featured, :published, :youtube_url, :website_url,
       :windows_type_id, :project_id, :workshop_id, :external_workshop_title,
-      :created_by_id, :updated_by_id, :story_idea_id, :spotlighted_facilitator_id,
-      primary_asset_attributes: [ :id, :file, :_destroy ],
-      gallery_assets_attributes: [ :id, :file, :_destroy ],
-      new_assets: [ :id, :type ]
+      :created_by_id, :updated_by_id, :story_idea_id, :spotlighted_facilitator_id
     )
+  end
+
+  def set_story_attributes_from(idea)
+    {
+      rhino_body: idea.body,
+      project_id: idea.project.id,
+      workshop_id: idea.workshop_id,
+      external_workshop_title: idea.external_workshop_title,
+      windows_type_id: idea.windows_type_id,
+      youtube_url: idea.youtube_url
+    }
   end
 end

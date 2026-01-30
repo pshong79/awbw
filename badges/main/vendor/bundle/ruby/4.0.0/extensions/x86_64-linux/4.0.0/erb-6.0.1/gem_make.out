@@ -4,16 +4,16 @@ checking for rb_ext_ractor_safe() in ruby.h... yes
 creating Makefile
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/erb-6.0.1/ext/erb/escape
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-kt43fm sitelibdir\=./.gem.20260124-2823-kt43fm clean
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-lk0z54 sitelibdir\=./.gem.20260124-2239-lk0z54 clean
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/erb-6.0.1/ext/erb/escape
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-kt43fm sitelibdir\=./.gem.20260124-2823-kt43fm
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-lk0z54 sitelibdir\=./.gem.20260124-2239-lk0z54
 compiling escape.c
 linking shared-object erb/escape.so
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/erb-6.0.1/ext/erb/escape
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-kt43fm sitelibdir\=./.gem.20260124-2823-kt43fm install
-/usr/bin/install -c -m 0755 escape.so ./.gem.20260124-2823-kt43fm/erb
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-lk0z54 sitelibdir\=./.gem.20260124-2239-lk0z54 install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20260124-2239-lk0z54/erb
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/erb-6.0.1/ext/erb/escape
-make DESTDIR\= sitearchdir\=./.gem.20260124-2823-kt43fm sitelibdir\=./.gem.20260124-2823-kt43fm clean
+make DESTDIR\= sitearchdir\=./.gem.20260124-2239-lk0z54 sitelibdir\=./.gem.20260124-2239-lk0z54 clean

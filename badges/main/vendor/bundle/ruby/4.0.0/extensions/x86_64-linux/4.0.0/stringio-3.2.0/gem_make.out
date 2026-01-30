@@ -4,16 +4,16 @@ checking for rb_io_mode_t in ruby/io.h... yes
 creating Makefile
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-ra5bxx sitelibdir\=./.gem.20260124-2823-ra5bxx clean
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-n6rqmr sitelibdir\=./.gem.20260124-2239-n6rqmr clean
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-ra5bxx sitelibdir\=./.gem.20260124-2823-ra5bxx
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-n6rqmr sitelibdir\=./.gem.20260124-2239-n6rqmr
 compiling stringio.c
 linking shared-object stringio.so
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-ra5bxx sitelibdir\=./.gem.20260124-2823-ra5bxx install
-/usr/bin/install -c -m 0755 stringio.so ./.gem.20260124-2823-ra5bxx
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-n6rqmr sitelibdir\=./.gem.20260124-2239-n6rqmr install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20260124-2239-n6rqmr
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/stringio-3.2.0/ext/stringio
-make DESTDIR\= sitearchdir\=./.gem.20260124-2823-ra5bxx sitelibdir\=./.gem.20260124-2823-ra5bxx clean
+make DESTDIR\= sitearchdir\=./.gem.20260124-2239-n6rqmr sitelibdir\=./.gem.20260124-2239-n6rqmr clean

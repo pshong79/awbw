@@ -1,12 +1,11 @@
 class CommunityNewsController < ApplicationController
-  include ExternallyRedirectable
-  include AhoyViewTracking
+  include ExternallyRedirectable, AssetUpdatable, AhoyViewTracking
   before_action :set_community_news, only: [ :show, :edit, :update, :destroy ]
 
   def index
     if turbo_frame_request?
       per_page = params[:number_of_items_per_page].presence || 12
-      unfiltered = current_user.super_user? ? CommunityNews.all : Community_news.published
+      unfiltered = current_user.super_user? ? CommunityNews.all : CommunityNews.published
       filtered = unfiltered.search_by_params(params)
       @community_news = filtered&.includes([ :bookmarks, :primary_asset, :author, :project, author: :facilitator ])
                               &.paginate(page: params[:page], per_page: per_page)&.decorate
@@ -51,6 +50,9 @@ class CommunityNewsController < ApplicationController
     @community_news = CommunityNews.new(community_news_params)
 
     if @community_news.save
+      if params.dig(:library_asset, :new_assets).present?
+        update_asset_owner(@community_news)
+      end
       redirect_to community_news_index_path,
                   notice: "Community news was successfully created."
     else
@@ -77,9 +79,6 @@ class CommunityNewsController < ApplicationController
 
   # Optional hooks for setting variables for forms or index
   def set_form_variables
-    @community_news.build_primary_asset if @community_news.primary_asset.blank?
-    @community_news.gallery_assets.build
-
     @organizations = Project.pluck(:name, :id).sort_by(&:first)
     @windows_types = WindowsType.all
     @authors = User.active.or(User.where(id: @community_news.author_id))
@@ -98,9 +97,7 @@ class CommunityNewsController < ApplicationController
       :title, :rhino_body, :published, :featured,
       :reference_url, :youtube_url,
       :project_id, :windows_type_id,
-      :author_id, :created_by_id, :updated_by_id,
-      primary_asset_attributes: [ :id, :file, :_destroy ],
-      gallery_assets_attributes: [ :id, :file, :_destroy ]
+      :author_id, :created_by_id, :updated_by_id
     )
   end
 end

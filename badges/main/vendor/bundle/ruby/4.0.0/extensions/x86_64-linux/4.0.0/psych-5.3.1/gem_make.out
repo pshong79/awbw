@@ -4,13 +4,13 @@ checking for pkg-config for yaml-0.1... [" ", "", "-lyaml"]
 creating Makefile
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-fxe40v sitelibdir\=./.gem.20260124-2823-fxe40v clean
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-ruw9yb sitelibdir\=./.gem.20260124-2239-ruw9yb clean
 cd libyaml && make clean
 /bin/sh: 1: cd: can't cd to libyaml
 make: [Makefile:287: clean-so] Error 2 (ignored)
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-fxe40v sitelibdir\=./.gem.20260124-2823-fxe40v
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-ruw9yb sitelibdir\=./.gem.20260124-2239-ruw9yb
 compiling psych.c
 compiling psych_emitter.c
 compiling psych_parser.c
@@ -19,11 +19,11 @@ compiling psych_yaml_tree.c
 linking shared-object psych.so
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-fxe40v sitelibdir\=./.gem.20260124-2823-fxe40v install
-/usr/bin/install -c -m 0755 psych.so ./.gem.20260124-2823-fxe40v
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-ruw9yb sitelibdir\=./.gem.20260124-2239-ruw9yb install
+/usr/bin/install -c -m 0755 psych.so ./.gem.20260124-2239-ruw9yb
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
-make DESTDIR\= sitearchdir\=./.gem.20260124-2823-fxe40v sitelibdir\=./.gem.20260124-2823-fxe40v clean
+make DESTDIR\= sitearchdir\=./.gem.20260124-2239-ruw9yb sitelibdir\=./.gem.20260124-2239-ruw9yb clean
 cd libyaml && make clean
 /bin/sh: 1: cd: can't cd to libyaml
 make: [Makefile:287: clean-so] Error 2 (ignored)

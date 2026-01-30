@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def root_link_path
-    user_signed_in? ? authenticated_root_path : unauthenticated_root_path
-  end
-
   def search_page(params)
     params[:search] ? params[:search][:page] : 1
   end
@@ -124,5 +120,25 @@ module ApplicationHelper
 
   def display_count(value)
     value.to_i.zero? ? "--" : number_with_delimiter(value)
+  end
+
+  def navbar_bg_class
+    staging_environment? ? "bg-red-600" : "bg-primary"
+  end
+
+  def staging_environment?
+    ENV["RAILS_ENV"] == "staging" || Rails.env == "staging"
+  end
+
+  def email_confirmation_icon(user)
+    if user.confirmed_at.present?
+      content_tag(:span, "confirmed", class: "text-green-600 ml-2 font-medium", title: "Email confirmed")
+    else
+      content_tag(:span, "unconfirmed", class: "text-red-600 ml-2 font-medium", title: "Email not confirmed")
+    end
+  end
+
+  def email_label_with_confirmation_icon(user)
+    "Email #{email_confirmation_icon(user)}".html_safe
   end
 end

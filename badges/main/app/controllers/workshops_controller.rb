@@ -11,7 +11,7 @@ class WorkshopsController < ApplicationController
 
       @workshops = search_service.workshops
         .includes(:categories, :windows_type, :user, :images, :bookmarks, :age_ranges, user: [ :facilitator ], primary_asset: [ :file_attachment ])
-        .paginate(page: params[:page], per_page: params[:per_page] || 20)
+        .paginate(page: params[:page], per_page: params[:per_page] || 12)
 
       @workshops_count = search_service.workshops.size
 
@@ -76,6 +76,35 @@ class WorkshopsController < ApplicationController
     set_form_variables
   end
 
+  def create
+    @workshop = current_user.workshops.build(workshop_params)
+    success = false
+
+    Workshop.transaction do
+      if @workshop.save
+        assign_associations(@workshop)
+        if params[:promote_idea_assets] == "true"
+          @workshop.attach_assets_from_idea!
+        elsif params.dig(:library_asset, :new_assets).present?
+          update_asset_owner(@workshop)
+        end
+        success = true
+      end
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+      log_workshop_error("creation", e)
+      raise ActiveRecord::Rollback
+    end
+
+    if success
+      flash[:notice] = "Workshop created successfully."
+      redirect_to workshops_path(sort: "created")
+    else
+      set_form_variables
+      flash.now[:alert] = "Unable to save the workshop."
+      render :new
+    end
+  end
+
   def edit
     @workshop = Workshop.find(params[:id])
     set_form_variables
@@ -97,6 +126,17 @@ class WorkshopsController < ApplicationController
       track_view(@workshop)
       render :show
     end
+  end
+
+  def destroy
+    unless current_user.super_user?
+      flash[:alert] = "You do not have permission to delete a workshop"
+      return redirect_back_or_to(workshops_path)
+    end
+
+    @workshop = Workshop.find(params[:id])
+    @workshop.destroy!
+    redirect_to workshops_path, notice: "Workshop was successfully destroyed."
   end
 
   def update
@@ -123,32 +163,6 @@ class WorkshopsController < ApplicationController
     end
   end
 
-  def create
-    @workshop = current_user.workshops.build(workshop_params)
-    success = false
-
-    Workshop.transaction do
-      if @workshop.save
-        assign_associations(@workshop)
-        if params.dig(:library_asset, :new_assets).present?
-          update_asset_owner(@workshop)
-        end
-        success = true
-      end
-    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
-      log_workshop_error("creation", e)
-      raise ActiveRecord::Rollback
-    end
-
-    if success
-      flash[:notice] = "Workshop created successfully."
-      redirect_to workshops_path(sort: "created")
-    else
-      set_form_variables
-      flash.now[:alert] = "Unable to save the workshop."
-      render :new
-    end
-  end
 
   def search
     @params = params[:search]
@@ -178,10 +192,7 @@ class WorkshopsController < ApplicationController
 
 
   def set_form_variables
-    @workshop.build_primary_asset if @workshop.primary_asset.blank?
-    @workshop.gallery_assets.build
-
-    @age_ranges = Category.includes(:category_type).where("metadata.name = 'AgeRange'").pluck(:name)
+    @age_ranges = Category.includes(:category_type).where("category_types.name = 'AgeRange'").pluck(:name)
     @potential_series_workshops = Workshop.published.where.not(id: @workshop.id).order(:title)
     @windows_types = WindowsType.all
     @workshop_ideas = WorkshopIdea.order(created_at: :desc)
@@ -287,12 +298,9 @@ class WorkshopsController < ApplicationController
 
       category_ids: [],
       sector_ids: [],
-      primary_asset_attributes: [ :id, :file, :_destroy ],
-      gallery_assets_attributes: [ :id, :file, :_destroy ],
-      new_assets: [ :id, :type ],
       workshop_series_children_attributes: [ :id, :workshop_child_id, :workshop_parent_id, :theme_name,
                                             :series_description, :series_description_spanish,
-                                            :position, :_destroy ],
+                                            :position, :_destroy ]
     )
   end
 

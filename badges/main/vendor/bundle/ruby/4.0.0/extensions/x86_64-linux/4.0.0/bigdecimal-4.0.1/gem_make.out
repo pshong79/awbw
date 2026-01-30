@@ -22,17 +22,17 @@ checking for RB_WARN_CATEGORY_DEPRECATED in ruby.h... yes
 creating Makefile
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/bigdecimal-4.0.1/ext/bigdecimal
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-tntsfh sitelibdir\=./.gem.20260124-2823-tntsfh clean
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-wr7i79 sitelibdir\=./.gem.20260124-2239-wr7i79 clean
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/bigdecimal-4.0.1/ext/bigdecimal
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-tntsfh sitelibdir\=./.gem.20260124-2823-tntsfh
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-wr7i79 sitelibdir\=./.gem.20260124-2239-wr7i79
 compiling bigdecimal.c
 compiling missing.c
 linking shared-object bigdecimal.so
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/bigdecimal-4.0.1/ext/bigdecimal
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-tntsfh sitelibdir\=./.gem.20260124-2823-tntsfh install
-/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20260124-2823-tntsfh
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-wr7i79 sitelibdir\=./.gem.20260124-2239-wr7i79 install
+/usr/bin/install -c -m 0755 bigdecimal.so ./.gem.20260124-2239-wr7i79
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/bigdecimal-4.0.1/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20260124-2823-tntsfh sitelibdir\=./.gem.20260124-2823-tntsfh clean
+make DESTDIR\= sitearchdir\=./.gem.20260124-2239-wr7i79 sitelibdir\=./.gem.20260124-2239-wr7i79 clean

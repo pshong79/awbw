@@ -16,16 +16,16 @@ checking for ttyname_r()... yes
 creating Makefile
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/io-console-0.8.2/ext/io/console
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-4b4z6i sitelibdir\=./.gem.20260124-2823-4b4z6i clean
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-v6fs8f sitelibdir\=./.gem.20260124-2239-v6fs8f clean
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/io-console-0.8.2/ext/io/console
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-4b4z6i sitelibdir\=./.gem.20260124-2823-4b4z6i
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-v6fs8f sitelibdir\=./.gem.20260124-2239-v6fs8f
 compiling console.c
 linking shared-object io/console.so
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/io-console-0.8.2/ext/io/console
-make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2823-4b4z6i sitelibdir\=./.gem.20260124-2823-4b4z6i install
-/usr/bin/install -c -m 0755 console.so ./.gem.20260124-2823-4b4z6i/io
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260124-2239-v6fs8f sitelibdir\=./.gem.20260124-2239-v6fs8f install
+/usr/bin/install -c -m 0755 console.so ./.gem.20260124-2239-v6fs8f/io
 
 current directory: /home/runner/work/awbw/awbw/vendor/bundle/ruby/4.0.0/gems/io-console-0.8.2/ext/io/console
-make DESTDIR\= sitearchdir\=./.gem.20260124-2823-4b4z6i sitelibdir\=./.gem.20260124-2823-4b4z6i clean
+make DESTDIR\= sitearchdir\=./.gem.20260124-2239-v6fs8f sitelibdir\=./.gem.20260124-2239-v6fs8f clean

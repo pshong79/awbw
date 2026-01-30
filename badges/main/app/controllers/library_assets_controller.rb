@@ -31,11 +31,11 @@
          render turbo_stream: turbo_stream.replace(
            "flash_now",
            partial: "shared/flash_messages",
-           status: :unprocessable_entity
+           status: :unprocessable_content
          )
        end
      else
-       @unpersisted_owner = Data.define(:assets).new([])
+       @unpersisted_owner = Data.define(:assets, :owner_class).new([], params[:owner_class])
        @asset =  Asset.new(asset_params.except(:file))
        @asset.file.attach(asset_params[:file]) if asset_params[:file].present?
 
@@ -44,7 +44,6 @@
            @unpersisted_owner.assets << Asset.find_by(id: asset[:id])
          end
        end
-
        valid_asset = validate_asset_type_constraint(@asset.type, @unpersisted_owner.assets)
 
        if valid_asset && @asset.save
@@ -63,7 +62,7 @@
        render template: "assets/edit"
      else
        flash.now[:alert] = "Error"
-       redirect_back_or_to authenticated_root_path
+       redirect_back_or_to root_path
      end
    end
 
@@ -93,7 +92,7 @@
          render turbo_stream: turbo_stream.replace(
            "flash_now",
            partial: "shared/flash_messages",
-           status: :unprocessable_entity
+           status: :unprocessable_content
          )
        end
      end
@@ -105,7 +104,7 @@
        render turbo_stream: turbo_stream.remove(@asset)
      else
        flash.now[:alert] = "Error"
-       redirect_back_or_to authenticated_root_path
+       redirect_back_or_to root_path
      end
    end
 
